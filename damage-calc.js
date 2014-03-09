@@ -500,3 +500,5 @@ console.log(calculateTypeEffectiveness('Ground','Dragon') ==
     Fire: 0.5, Flying: 1, Ghost: 1, Grass: 1, Ground: 1, Ice: 4, 
     Normal: 1, Poison: 0.5, Psychic: 1, Rock: 0.5, Steel: 1, Water: 1});
 */
+
+//this is a comment for my new branch
