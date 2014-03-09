@@ -442,6 +442,9 @@ var BattleTypeChart = {
   }
 }
 
+// Type, Type, Type -> TypeEffectiveness
+// Consumes 2 defending types and one attacking type, produces CompoundTypeEffectiveness
+
 function calculateDamage( type1, type2, attackType ) {
     var effectivenessOne = convertDamageValue(BattleTypeChart[type1]['damageTaken'][attackType]);
 
@@ -452,6 +455,9 @@ function calculateDamage( type1, type2, attackType ) {
     else
         return effectivenessOne;
 }
+
+// Number - > TypeEffectiveness
+// Replaces a damageValue with a basic type effectiveness
 
 function convertDamageValue( damageValue ) {
     switch( damageValue ) {
@@ -469,6 +475,9 @@ function convertDamageValue( damageValue ) {
     }
 }
 
+// Type, Type -> ListOfTypeEffectiveness
+// Consumes two types and returns a list of attackType:CompoundTypeEffectiveness pairs
+
 function calculateTypeEffectiveness( type1, type2 ) {
 
     var effectiveness = {};
@@ -481,8 +490,13 @@ function calculateTypeEffectiveness( type1, type2 ) {
 
 }
 
-console.log(calculateDamage('Ground', '', 'Grass'));
-console.log(calculateDamage('Ground', '', 'Electric'));
-console.log(calculateDamage('Ground', 'Dragon', 'Ice'));
-//console.log(calculateDamage('Round', 'Dragon', 'Grass'));
-console.log(calculateTypeEffectiveness('Ground', 'Dragon'));
+console.log(calculateDamage('Ground', '', 'Grass') == 2);
+console.log(calculateDamage('Ground', '', 'Electric') == 0);
+console.log(calculateDamage('Ground', 'Dragon', 'Ice') == 4);
+console.log(calculateDamage('Ground', 'Dragon', 'Grass') == 1);
+/* 
+console.log(calculateTypeEffectiveness('Ground','Dragon') == 
+  {Bug: 1, Dark: 1, Dragon: 2, Electric: 0, Fairy: 2, Fighting: 1, 
+    Fire: 0.5, Flying: 1, Ghost: 1, Grass: 1, Ground: 1, Ice: 4, 
+    Normal: 1, Poison: 0.5, Psychic: 1, Rock: 0.5, Steel: 1, Water: 1});
+*/
